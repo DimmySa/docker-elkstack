@@ -38,6 +38,19 @@ services:
           - elasticsearch
         networks:
           - elknetwork
+
+    filebeat:
+        image: filebeat: 7.7.0
+        container_name: filebeat
+        hostname: filebeat
+        volumes:
+          - .\filebeat:/usr/share/filebeat/filebeat.yml
+        depends_on:
+          - elasticsearch
+          - kibana
+        networks:
+          - elknetwork
+
 networks:
     elknetwork:
         driver: bridge
